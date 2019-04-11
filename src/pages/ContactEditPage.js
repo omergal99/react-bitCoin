@@ -1,27 +1,138 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
+import { Link, withRouter } from 'react-router-dom';
 
 import ContactService from '../services/ContactService';
 
-export default class ContactEditPage extends Component {
+class ContactEditPage extends Component {
     state = {
         contact: null,
+        isAddNew: true,
+        isNameValid: true
     }
     // async componentDidMount() {
-    //     this.setState({ contact: await ContactService.getContactById('5a56640269f443a5d64b32ca') })
+    //     const id = this.props.match.params.id;
+    //     if (id) {
+    //         this.setState({
+    //             contact: await ContactService.getContactById(id),
+    //             isAddNew: false
+    //         })
+    //     } else {
+    //         this.setState({ contact: ContactService.getEmptyContact() })
+    //     }
     // }
     componentDidMount() {
-        ContactService.getContactById('5a56640269f443a5d64b32ca')
-            .then(res => this.setState({ contact: res }))
+        const id = this.props.match.params.id;
+        if (id) {
+            ContactService.getContactById(id)
+                .then(res => this.setState({ contact: res, isAddNew: false }))
+        } else {
+            this.setState({ contact: ContactService.getEmptyContact() })
+        }
     }
+
+    componentWillUnmount() { // ON DESTROY
+
+    }
+
+    setName = (ev) => {
+        var contact = { ...this.state.contact };
+        contact.name = ev.target.value;
+        this.setState({ contact, isNameValid: true });
+    }
+    setEmail = (ev) => {
+        var contact = { ...this.state.contact };
+        contact.email = ev.target.value;
+        this.setState({ contact });
+    }
+    setPhone = (ev) => {
+        var contact = { ...this.state.contact };
+        contact.phone = ev.target.value;
+        this.setState({ contact });
+    }
+
+    handleSubmit = (ev) => {
+        ev.preventDefault();
+        if (this.state.contact.name === '') {
+            this.setState({ isNameValid: false })
+            console.log('wrongggg')
+        } else {
+            this.setState({ isNameValid: true })
+            console.log('okkkkk')
+            ContactService.saveContact(this.state.contact)
+                .then(() => this.props.history.push(`/contact`))
+        }
+    }
+
+    removeContact = (id) => {
+        console.log('Remove conatact id:', id);
+        ContactService.deleteContact(id)
+            .then(() => this.props.history.push(`/contact`))
+    }
+
     render() {
+        var nameError;
+        if (!this.state.isNameValid) {
+            nameError = <div>Name is Mandatory</div>
+        }
         return (
             <div>
-                <h4>Contact Edit Page</h4>
+                <h4>Contact Edit/Add Page</h4>
+
+                <div className="contact-container">
+                    {this.state.isAddNew ?
+                        <div>
+                            <p>Add New</p>
+                            <button
+                                onClick={(ev) => {
+                                    ev.preventDefault()
+                                    this.props.history.go(-1)
+                                }}>BACK TO LAST PAGE
+                            </button>
+                        </div>
+                        :
+                        <div>
+                            <p>Edit Contact</p>
+                            <Link to={`/contact/${this.state.contact._id}`}>
+                                <button>BACK TO DETAILS</button>
+                            </Link>
+                            <button
+                                onClick={(ev) => {
+                                    ev.preventDefault()
+                                    this.removeContact(this.state.contact._id)
+                                }}>DELETE USER
+                            </button>
+                        </div>
+                    }
+                    {this.state.isAddNew &&
+                        <form onSubmit={this.handleSubmit} className="contact-form flex flex-col">
+                            Name: <input onChange={this.setName} type="text" placeholder="Contact Name" />
+                            Email: <input onChange={this.setEmail} type="email" placeholder="Email" />
+                            Phone: <input onChange={this.setPhone} type="tel" placeholder="Phone Number" />
+
+                            <input type="submit" value="Create!" />
+                        </form>
+                    }
+                    {!this.state.isAddNew &&
+                        <form onSubmit={this.handleSubmit} className="contact-form flex flex-col">
+                            Name: <input onChange={this.setName} value={this.state.contact.name}
+                                type="text" placeholder="Contact Name" />
+                            Email: <input onChange={this.setEmail} value={this.state.contact.email}
+                                type="email" placeholder="Email" />
+                            Phone: <input onChange={this.setPhone} value={this.state.contact.phone}
+                                type="tel" placeholder="Phone Number" />
+
+                            <input type="submit" value="Update!" />
+                        </form>
+                    }
+                    {nameError}
+                </div>
             </div>
         )
     }
 }
+
+export default withRouter(ContactEditPage)
 
 // ContactEditPage.propTypes = {
 //     contact: PropTypes.object

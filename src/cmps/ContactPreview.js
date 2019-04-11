@@ -1,16 +1,32 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link, withRouter } from 'react-router-dom';
+import userImg from '../assets/img/profiles/user.png';
 
-export default class ContactPreview extends Component {
-    selectcontact = (contact) => {
-        console.log('Selecting contact', this, contact);
-    }
+
+// export default class ContactPreview extends Component {
+class ContactPreview extends Component {
+    
     render() {
         return (
-            <li onClick={() => this.selectcontact(this.props.contact)}>
-                <img height="40" src="https://res.cloudinary.com/dwlinsb9c/image/upload/v1554719488/rzwlwcxenvujyo2gzbju.png" alt="" />
-                {this.props.contact.name}
-            </li>
+            <Link to={`/contact/${this.props.contact._id}`} >
+                <li>
+                    <img height="40" src={userImg} alt="" />
+                    {this.props.contact.name}
+
+                    <button onClick={(ev) => {
+                        ev.preventDefault()
+                        this.props.history.push(`/contact/edit/${this.props.contact._id}`)
+                    }}>EDIT
+                    </button>
+
+                    <button onClick={(ev) => {
+                        ev.preventDefault()
+                        this.props.onEmitRemove(this.props.contact._id)
+                    }}>DELETE CONTACT
+                    </button>
+                </li>
+            </Link>
         )
     }
 }
@@ -19,4 +35,4 @@ ContactPreview.propTypes = {
     contact: PropTypes.object
 }
 
-
+export default withRouter(ContactPreview)

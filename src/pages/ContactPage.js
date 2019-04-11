@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 
 import ContactList from '../cmps/ContactList';
 import ContactFilter from '../cmps/ContactFilter';
+
 import ContactService from '../services/ContactService';
 
 export default class ContactPage extends Component {
     state = {
         contacts: null,
-        contactsToShow: null
+        contactsToShow: null,
+        saveFilter: ''
     }
 
     async componentDidMount() {
         this.setState({ contacts: await ContactService.getContacts() })
-        this.filterContacts('');
+        this.filterContacts(this.state.saveFilter);
     }
 
     filterContacts = (stringToFilter) => {
@@ -20,8 +22,18 @@ export default class ContactPage extends Component {
             return contact.name.toLowerCase().includes(stringToFilter.toLowerCase())
         })
         this.setState({
-            contactsToShow: filterdContacts
+            contactsToShow: filterdContacts,
+            saveFilter: stringToFilter
         })
+    }
+
+    removeContact = (id) => {
+        console.log('Remove conatact id:', id);
+        ContactService.deleteContact(id)
+            .then((updateContacts) => {
+                this.setState({ contacts: updateContacts })
+                this.filterContacts(this.state.saveFilter);
+            })
     }
 
     render() {
@@ -29,10 +41,10 @@ export default class ContactPage extends Component {
             <section>
                 <h1>Contact Page</h1>
 
-                <ContactFilter onFilter={this.filterContacts}/>
+                <ContactFilter onFilter={this.filterContacts} />
 
                 {this.state.contactsToShow &&
-                    <ContactList contacts={this.state.contactsToShow} />
+                    <ContactList contacts={this.state.contactsToShow} onRemove={this.removeContact} />
                 }
             </section>
         )

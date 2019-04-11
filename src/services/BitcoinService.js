@@ -9,8 +9,14 @@ import transactionsPrice from './data/transactionsPrice.json';
 
 async function getRate(coins) {
     var value = await axios.get(`https://blockchain.info/tobtc?currency=USD&value=${coins}`)
-        return value.data
+    return value.data
 }
+
+// IN PROMISE THEN
+// function getRate(coins) {
+//     return axios.get(`https://blockchain.info/tobtc?currency=USD&value=${coins}`)
+//         .then((value) => value.data)
+// }
 
 function getMarketPrice() {
     // return marketPrice;
