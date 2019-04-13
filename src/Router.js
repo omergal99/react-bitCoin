@@ -33,7 +33,7 @@ export default class Router extends Component {
 
         <nav className="Nav_menu">
           <ul>
-            <NavLink className="Nav_link" to="/"
+            <NavLink exact className="Nav_link" to="/"
               activeClassName="activeRoute">Home</NavLink>
             <NavLink className="Nav_link" to="/contact"
               activeClassName="activeRoute">Contacts</NavLink>

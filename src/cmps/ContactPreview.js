@@ -4,7 +4,6 @@ import { Link, withRouter } from 'react-router-dom';
 import binImg from '../assets/img/icons/bin.png';
 import editImg from '../assets/img/icons/edit.png';
 
-
 // export default class ContactPreview extends Component {
 class ContactPreview extends Component {
     editClicked = (ev) => {
@@ -16,7 +15,7 @@ class ContactPreview extends Component {
         this.props.onEmitRemove(this.props.contact._id)
     }
     render() {
-        var urlImg = `../${this.props.contact.img}`;
+        var urlImg = `${this.props.contact.img}`;
         return (
             <Link to={`/contact/${this.props.contact._id}`} >
                 <li>
