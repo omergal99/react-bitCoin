@@ -1,4 +1,4 @@
-import axios from 'axios';
+// import axios from 'axios';
 import marketPrice from './data/marketPrice.json';
 import transactionsPrice from './data/transactionsPrice.json';
 
@@ -8,8 +8,10 @@ import transactionsPrice from './data/transactionsPrice.json';
 // }
 
 async function getRate(coins) {
-    var value = await axios.get(`https://blockchain.info/tobtc?currency=USD&value=${coins}`)
-    return value.data
+    // WHEN active dont forget to UNmark the IMPORT AXIOS
+    // var value = await axios.get(`https://blockchain.info/tobtc?currency=USD&value=${coins}`)
+    // return value.data;
+    return Promise.resolve(coins*0.0001990188);
 }
 
 // IN PROMISE THEN

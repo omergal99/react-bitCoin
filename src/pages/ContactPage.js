@@ -39,8 +39,6 @@ export default class ContactPage extends Component {
     render() {
         return (
             <section>
-                <h1>Contact Page</h1>
-
                 <ContactFilter onFilter={this.filterContacts} />
 
                 {this.state.contactsToShow &&

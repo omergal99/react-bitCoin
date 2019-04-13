@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
+import React from 'react';
 
 // export default class ContactFilter extends Component {
 //     render() {
@@ -16,8 +17,7 @@ import React, { Component } from 'react';
 // }
 
 const ContactFilter = ({onFilter}) => (
-    <section>
-        <h2>Im a Filter</h2>
+    <section className="filter-container">
         <input
             onChange={ev => onFilter(ev.target.value)}
             type="text"

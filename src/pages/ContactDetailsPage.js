@@ -1,26 +1,50 @@
+// BASIC
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 
+// CMPS
+import MovesList from '../cmps/MovesList';
+import TransferFund from '../cmps/TransferFund';
+
+// SERVISES
 import ContactService from '../services/ContactService';
+import UserService from '../services/UserService';
 
 class ContactDetailsPage extends Component {
     state = {
         contact: null,
+        moves: []
     }
     async componentDidMount() {
         const id = this.props.match.params.id;
-        this.setState({ contact: await ContactService.getContactById(id) })
+        this.setState({ 
+            contact: await ContactService.getContactById(id),
+            moves: await UserService.getMovesByContactId(id)
+        })
     }
     // componentDidMount() {
     //     const id = this.props.match.params.id;
     //     ContactService.getContactById(id)
     //         .then(res => this.setState({ contact: res }))
     // }
+    addNewMove = (contact, amount) => {
+        UserService.addMove(contact, amount)
+        .then((newMove)=>{
+            var updateMoves = this.state.moves;
+            updateMoves.unshift(newMove);
+            this.setState({
+                moves: updateMoves
+            })
+        })
+      }
     render() {
+        var urlImg;
+        if(this.state.contact){
+            urlImg = `../${this.state.contact.img}`;
+        }
         return (
             <div>
-                <h4>Contact Details Page</h4>
+                <h3>Contact Details Page</h3>
 
                 <button
                     onClick={(ev) => {
@@ -42,7 +66,8 @@ class ContactDetailsPage extends Component {
                     </Link>
                 }
 
-                <img height="40" src="https://res.cloudinary.com/dwlinsb9c/image/upload/v1554719488/rzwlwcxenvujyo2gzbju.png" alt="" />
+                <img height="70" src={urlImg} alt="" />
+                
                 {this.state.contact &&
                     <div>
                         <div>{this.state.contact.name}</div>
@@ -50,15 +75,14 @@ class ContactDetailsPage extends Component {
                         <div>{this.state.contact.email}</div>
                     </div>
                 }
+
+                <TransferFund contact={this.state.contact} onTransferCoins={this.addNewMove} />
+                <MovesList moves={this.state.moves} 
+                title={`${this.state.contact && this.state.contact.name} - Transactions`} />
+
             </div>
         )
     }
 }
 
 export default withRouter(ContactDetailsPage)
-
-// ContactDetailsPage.propTypes = {
-//     contact: PropTypes.object
-// }
-
-
