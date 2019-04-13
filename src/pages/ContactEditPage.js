@@ -4,6 +4,10 @@ import { Link, withRouter } from 'react-router-dom';
 
 import ContactService from '../services/ContactService';
 
+import binImg from '../assets/img/icons/bin.png';
+import backImg from '../assets/img/icons/back-arrow.png';
+
+
 class ContactEditPage extends Component {
   state = {
     contact: null,
@@ -64,10 +68,15 @@ class ContactEditPage extends Component {
     }
   }
 
-  removeContact = (id) => {
-    console.log('Remove conatact id:', id);
+  removeContact = (ev, id) => {
+    ev.preventDefault()
     ContactService.deleteContact(id)
       .then(() => this.props.history.push(`/contact`))
+  }
+
+  goOneBack = (ev) => {
+    ev.preventDefault()
+    this.props.history.go(-1)
   }
 
   render() {
@@ -75,35 +84,39 @@ class ContactEditPage extends Component {
     if (!this.state.isNameValid) {
       nameError = <div>Name is Mandatory</div>
     }
+    var urlImg;
+    if (this.state.contact) {
+      urlImg = `${this.state.contact.img}`;
+    }
     return (
       <div>
-        <h4>Contact Edit/Add Page</h4>
-
         <div className="contact-container">
+
           {this.state.isAddNew ?
-            <div>
-              <p>Add New</p>
-              <button
-                onClick={(ev) => {
-                  ev.preventDefault()
-                  this.props.history.go(-1)
-                }}>BACK TO LAST PAGE
-              </button>
+            <div className="options-edit">
+              <h3>Add New</h3>
+
+              <img height="30" src={backImg} alt="" title="Back"
+                onClick={(ev) => { this.goOneBack(ev) }} />
+
             </div>
             :
-            <div>
-              <p>Edit Contact</p>
+            <div className="options-edit">
+              <h3>Edit Contact</h3>
               <Link to={`/contact/${this.state.contact._id}`}>
-                <button>BACK TO DETAILS</button>
+                <img height="30" src={backImg} alt="" title="Back to Details" />
               </Link>
-              <button
-                onClick={(ev) => {
-                  ev.preventDefault()
-                  this.removeContact(this.state.contact._id)
-                }}>DELETE USER
-              </button>
+
+              <img height="26" src={binImg} title="Delete" alt=""
+                onClick={(ev) => this.removeContact(ev, this.state.contact._id)} />
+
             </div>
           }
+
+          <div>
+            <img height="100" src={urlImg} alt="" />
+          </div>
+
           {this.state.isAddNew &&
             <form onSubmit={this.handleSubmit} className="contact-form flex flex-col">
               Name: <input onChange={this.setName} type="text" placeholder="Contact Name" />

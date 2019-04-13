@@ -99,7 +99,11 @@ function _updateUser(newMove, amount) {
 }
 
 function addMove(contact, amount) {
-    contact.coins = amount;
+    if(contact.coins){
+        contact.coins += Number(amount);
+    }else{
+        contact.coins = Number(amount);
+    }
     ContactService.saveContact(contact);
     var newMove = {
         fromUser: (gUser) ? gUser.name : 'Guest',

@@ -13,14 +13,14 @@ export default class MovesList extends Component {
         const movesList =
             this.props.moves.map((move, idx) => (
                 <li key={idx} >
-                    {move.to}
-                    {move.at}----
-                    {move.amount}
+                    {move.to} Get &nbsp;
+                    {move.amount} Coins, At &nbsp;
+                    {move.at}
                 </li>
             ));
         return (
             <section>
-                <h2>{this.props.title}</h2>
+                <h3>{this.props.title}</h3>
                 <ul>{movesList}</ul>
                 {/* <ul>{this.props.moves}</ul> */}
                 {/* {this.props.moves && this.props.moves} */}

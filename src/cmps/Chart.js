@@ -6,7 +6,6 @@ export default class Chart extends Component {
     render() {
         return (
             <section>
-                <h1>Chart</h1>
                 <div>{this.props.chart.title}</div>
                 {/* <div>{this.props.chart.data}</div> */}
                 <Sparklines data={this.props.chart.data}>

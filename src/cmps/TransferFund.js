@@ -8,16 +8,18 @@ export default class TransferFund extends Component {
         this.setState({ moneyToSend: ev.target.value });
     }
     sendMoney = (ev) => {
+        ev.preventDefault();
         this.props.onTransferCoins(this.props.contact, this.state.moneyToSend)
     }
     render() {
         return (
             <section>
-                <h2>TransferFund cmp</h2>
                 <p>Give Some Coins to {this.props.contact && this.props.contact.name}</p>
-                Amount
-                <input onChange={this.setCoins} type="number" />
-                <button onClick={this.sendMoney}>Send</button>
+                Amount &nbsp;
+                <form>
+                    <input onChange={this.setCoins} type="number" />
+                    <button onClick={this.sendMoney}>Send</button>
+                </form>
             </section>
         )
     }

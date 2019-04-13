@@ -16,14 +16,19 @@ class ContactPreview extends Component {
     }
     render() {
         var urlImg = `${this.props.contact.img}`;
+        var userName = `${this.props.contact.name}`;
         return (
             <Link to={`/contact/${this.props.contact._id}`} >
                 <li>
                     {/* <img height="26" src={require('../assets/img/icons/edit.png')}/> */}
                     <div className="flex wrap space-even align-center">
-                        <img height="26" src={editImg} onClick={(ev) => this.editClicked(ev)} alt="" />
-                        <img height="60" src={urlImg} alt="" />
-                        <img height="26" src={binImg} onClick={(ev) => this.removeClicked(ev)} alt="" />
+                        <img height="26" src={binImg} title="Delete"
+                        onClick={(ev) => this.removeClicked(ev)} alt="" />
+                        
+                        <img height="60" src={urlImg} alt="" title={userName} />
+
+                        <img height="26" src={editImg} title="Edit" 
+                        onClick={(ev) => this.editClicked(ev)} alt="" />
                     </div>
                     <div>{this.props.contact.name}</div>
                 </li>
