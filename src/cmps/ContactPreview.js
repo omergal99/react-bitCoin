@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
-import binImg from '../assets/img/icons/bin.png';
 import editImg from '../assets/img/icons/edit.png';
+import binImg from '../assets/img/icons/bin.png';
 
 // export default class ContactPreview extends Component {
 class ContactPreview extends Component {
