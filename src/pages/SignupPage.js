@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { observer } from 'mobx-react';
+
 // import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { Formik, Form, Field } from 'formik';
 import { withRouter } from 'react-router-dom';
 
-import UserService from '../services/UserService';
-
 class SignupPage extends Component {
+
   render() {
     return (
       <div>
@@ -41,15 +42,13 @@ class SignupPage extends Component {
             // setTimeout(() => actions.setSubmitting(false), 3 * 1000);
 
             // console.log('Submitted Values:', values);
-            UserService.signup(values.name)
-              .then(() => {
-                this.props.history.push(`/`)
-              })
+            this.props.UserStore.signupUser(values.name)
+              .then(() => this.props.history.push(`/`))
           }}
         >
           {formikProps => (
             <Form>
-              <Field name="name" autoFocus={true} type="text"/><br />
+              <Field name="name" autoFocus={true} type="text" /><br />
 
               {/* <div>
                 <Field name="city" component="select">
@@ -88,4 +87,4 @@ class SignupPage extends Component {
   }
 }
 
-export default withRouter(SignupPage)
+export default withRouter(observer(SignupPage))
