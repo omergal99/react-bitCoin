@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/react-bitCoin/precache-manifest.f24ef776036a6eb64d228918ee91a995.js"
+  "/react-bitCoin/precache-manifest.9d97baced91c94c97ee8ecdc9333f0a1.js"
 );
 
 workbox.clientsClaim();
