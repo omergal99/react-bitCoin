@@ -16,13 +16,14 @@
   }
   
   .Nav_link:link {
+    color: black;
     font-size: 1.2em;
     text-decoration: none;
     padding-right: 10px;
   }
   
   .Nav_link:hover {
-    color: teal;
+    color: rgb(255, 136, 0);
   }
   
   .Nav_link:active {
@@ -30,6 +31,6 @@
   }
   
   .activeRoute {
-    color:  teal;
+    color: red;
   }
   
