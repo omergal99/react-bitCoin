@@ -1,7 +1,7 @@
 import { decorate, observable, computed, action } from 'mobx';
 
 class TodosModule {
-    todos = [];
+    // todos = [];
 
     constructor(rootStore) {
         this.rootStore = rootStore;

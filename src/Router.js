@@ -61,6 +61,9 @@ class Router extends Component {
 
         <Switch>
           {!isLogin &&
+            // ...props => send the history of link
+            // i can use props.history in the page below
+            // <Route path="/"  render={() => <SignupPage {...props} UserStore={AppStore.userStore} />} />
             <Route path="/"  render={() => <SignupPage UserStore={AppStore.userStore} />} />
             // {/* <Redirect exact to="/signup" component={SignupPage} /> */}
           }
