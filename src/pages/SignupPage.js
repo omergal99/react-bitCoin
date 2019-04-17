@@ -49,8 +49,11 @@ class SignupPage extends Component {
           {formikProps => (
             <Form className="signup-form">
               <div className="user-name">
-                <Field name="name" autoFocus={true} type="text"
-                  placeholder="Write your name" />
+                {/* <Field name="name" autoFocus={(window.innerWidth > 500)} type="text"
+                  placeholder="Write your name" /> */}
+                <Field name="name" placeholder="Write your name" type="text"
+                  autoFocus={(window.orientation === undefined &&
+                    navigator.userAgent.indexOf('Mobile') === -1)} />
               </div>
 
               {/* <div>
