@@ -11,7 +11,7 @@ async function getRate(coins) {
     // WHEN active dont forget to UNmark the IMPORT AXIOS
     // var value = await axios.get(`https://blockchain.info/tobtc?currency=USD&value=${coins}`)
     // return value.data;
-    return Promise.resolve(coins*0.0001990188);
+    return Promise.resolve((coins*354.23).toFixed(2));
 }
 
 // IN PROMISE THEN

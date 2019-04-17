@@ -1,28 +1,42 @@
 import React, { Component } from 'react';
 
 export default class TransferFund extends Component {
-    state = {
-        moneyToSend: 0,
+  state = {
+    moneyToSend: '',
+    wrongMsg: ''
+  }
+  setCoins = (ev) => {
+    this.setState({ moneyToSend: ev.target.value });
+  }
+  sendMoney = (ev) => {
+    ev.preventDefault();
+    var num = this.state.moneyToSend;
+    if (num && !isNaN(num) && num > 0) {
+      this.props.onTransferCoins(this.props.contact, this.state.moneyToSend);
+    } else {
+      if (num < 0) {
+        this.setState({ wrongMsg: 'You can not stell money from a friend..' });
+        setTimeout(() => this.setState({ wrongMsg: '' }), 2 * 1000);
+      } else {
+        this.setState({ wrongMsg: 'Must input numbers' });
+        setTimeout(() => this.setState({ wrongMsg: '' }), 2 * 1000);
+      }
     }
-    setCoins = (ev) => {
-        this.setState({ moneyToSend: ev.target.value });
-    }
-    sendMoney = (ev) => {
-        ev.preventDefault();
-        this.props.onTransferCoins(this.props.contact, this.state.moneyToSend)
-    }
-    render() {
-        return (
-            <section>
-                <p>Give Some Coins to {this.props.contact && this.props.contact.name}</p>
-                Amount &nbsp;
-                <form>
-                    <input onChange={this.setCoins} type="number" />
-                    <button onClick={this.sendMoney}>Send</button>
-                </form>
-            </section>
-        )
-    }
+    // this.setState({ moneyToSend: '' });
+  }
+  render() {
+    return (
+      <section>
+        <p>Give Some Coins to {this.props.contact && this.props.contact.name}</p>
+        Amount &nbsp;
+        <form>
+          <input value={this.state.moneyToSend} onChange={this.setCoins} type="number" />
+          <button onClick={this.sendMoney}>Send</button>
+          <div>{this.state.wrongMsg}</div>
+        </form>
+      </section>
+    )
+  }
 }
 
 // const TransferFund = ({ contact }) => (

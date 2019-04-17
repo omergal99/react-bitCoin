@@ -14,7 +14,8 @@ export default class ContactList extends Component {
   render() {
     const contactsList =
       this.props.contacts.map((contact) => (
-        <ContactPreview contact={contact} onEmitRemove={this.emitRemoveContact} key={contact._id} />
+        <ContactPreview contact={contact} 
+        onEmitRemove={this.emitRemoveContact} key={contact._id} />
       ));
     return (
       <section>

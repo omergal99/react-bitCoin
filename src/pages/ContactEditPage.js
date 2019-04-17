@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import PropTypes from 'prop-types';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import ContactService from '../services/ContactService';
 
@@ -103,9 +103,8 @@ class ContactEditPage extends Component {
             :
             <div className="options-edit">
               <h3>Edit Contact</h3>
-              <Link to={`/contact/${this.state.contact._id}`}>
-                <img height="30" src={backImg} alt="" title="Back to Details" />
-              </Link>
+              <img height="30" src={backImg} alt="" title="Back"
+                onClick={(ev) => { this.goOneBack(ev) }} />
 
               <img height="26" src={binImg} title="Delete" alt=""
                 onClick={(ev) => this.removeContact(ev, this.state.contact._id)} />

@@ -1,30 +1,37 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
-// import UserService from '../services/UserService';
-
-export default class MovesList extends Component {
-    componentDidMount() {
-        
-    }
-    componentDidUpdate() {
-        
+class MovesList extends Component {
+    editClicked = (ev, move) => {
+        ev.preventDefault()
+        this.props.history.push(`/contact/${move.toId}`)
     }
     render() {
         const movesList =
             this.props.moves.map((move, idx) => (
-                <li key={idx} >
-                    {move.to} Get &nbsp;
-                    {move.amount} Coins, At &nbsp;
-                    {move.at}
+                <li onClick={(ev) => this.editClicked(ev, move)} key={idx}>
+                    <div className="names-move">
+                        <label>{move.fromUser}</label>
+                        <label>&nbsp;-->&nbsp;</label>
+                        <label>{move.to}</label>
+                    </div>
+                    <div className="coins-move">
+                        <label>${move.amount}</label>
+                        <label>&nbsp;|&nbsp;</label>
+                        <label>₿{(move.amount * 0.00282302458854417).toFixed(4)}</label>
+                    </div>
+                    <div className="date-move">
+                        <label>{move.at}</label>
+                    </div>
                 </li>
             ));
         return (
-            <section>
+            <div className="moves-list">
                 <h3>{this.props.title}</h3>
                 <ul>{movesList}</ul>
-                {/* <ul>{this.props.moves}</ul> */}
-                {/* {this.props.moves && this.props.moves} */}
-            </section>
+            </div>
         )
     }
 }
+
+export default withRouter(MovesList)

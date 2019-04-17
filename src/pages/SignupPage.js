@@ -9,8 +9,8 @@ class SignupPage extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Signup Page</h1>
+      <div className="login-signup">
+        <h2>Signup</h2>
         <Formik
           // Sets up our default values
           initialValues={{ name: '', email: '', password: '', city: '' }}
@@ -47,8 +47,11 @@ class SignupPage extends Component {
           }}
         >
           {formikProps => (
-            <Form>
-              <Field name="name" autoFocus={true} type="text" /><br />
+            <Form className="signup-form">
+              <div className="user-name">
+                <Field name="name" autoFocus={true} type="text"
+                  placeholder="Write your name" />
+              </div>
 
               {/* <div>
                 <Field name="city" component="select">
@@ -72,13 +75,15 @@ class SignupPage extends Component {
                   </div>
                 )}
               </div> */}
+              <div className="approves-btn flex wrap space-between">
+                <input className="reset" type="reset" value="Reset"
+                  onClick={formikProps.handleReset}
+                  disabled={!formikProps.dirty || formikProps.isSubmitting}
+                />
 
-              <input type="submit" value="Submit" />&nbsp;
+                <input className="submit" type="submit" value="Enter!" />
+              </div>
 
-              <input type="reset" value="Reset"
-                onClick={formikProps.handleReset}
-                disabled={!formikProps.dirty || formikProps.isSubmitting}
-              />
             </Form>
           )}
         </Formik>

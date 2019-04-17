@@ -82,7 +82,7 @@ function signup(name) {
     }
 }
 
-function _updateUser(newMove, amount) {
+function updateUser(newMove, amount) {
     if (gUser) {
         var newBalance = gUser.coins - amount;
         gUser.coins = newBalance;
@@ -113,7 +113,6 @@ function addMove(contact, amount) {
         createTime: Date.now(),
         amount: amount
     }
-    _updateUser(newMove, amount);
     _getMoves().then((moves) => {
         if (moves && moves.length) {
             moves.unshift(newMove)
@@ -142,5 +141,6 @@ export default {
     addMove,
     getEmptyMove,
     getMovesByContactId,
-    getThreeMoves
+    getThreeMoves,
+    updateUser
 }

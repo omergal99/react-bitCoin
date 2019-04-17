@@ -73,9 +73,9 @@ class Router extends Component {
           {/* <Route exact path="/signup" component={SignupPage} /> */}
           <Route exact path="/contact" component={ContactPage} />
           <Route exact path="/statistic" component={StatisticPage} />
-          <Route path="/contact/edit/:id?" component={ContactEditPage} />
-          <Route path="/contact/:id" component={ContactDetailsPage} />
-          <Route path="/user/:name?" component={UserDetailsPage} />
+          <Route path="/contact/edit/:id?" component={ContactEditPage} store={AppStore} />
+          <Route path="/contact/:id" component={ContactDetailsPage} store={AppStore} />
+          <Route path="/user/:name?" component={UserDetailsPage} store={AppStore} />
         </Switch>
 
         {/* </BrowserRouter> */}
