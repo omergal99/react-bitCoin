@@ -1,9 +1,5 @@
 self.__precacheManifest = [
   {
-    "revision": "d60c9648a2f0a0e8b6ed6eb49e4832fb",
-    "url": "/react-bitCoin/static/media/edit.d60c9648.png"
-  },
-  {
     "revision": "849e67957ea4dd5edb38eedb9d5743f1",
     "url": "/react-bitCoin/static/media/Quando-Regular.849e6795.ttf"
   },
@@ -16,19 +12,19 @@ self.__precacheManifest = [
     "url": "/react-bitCoin/static/js/runtime~main.5a36ab58.js"
   },
   {
-    "revision": "8bf394f0619d9ea0b6ae",
-    "url": "/react-bitCoin/static/js/main.52e4df0f.chunk.js"
+    "revision": "6c38fdd298d4d1900181",
+    "url": "/react-bitCoin/static/js/main.bb68c985.chunk.js"
   },
   {
-    "revision": "71164f61f7e8a84de20d",
-    "url": "/react-bitCoin/static/js/2.c1598dcd.chunk.js"
+    "revision": "aa9ca82f17e55a3469b1",
+    "url": "/react-bitCoin/static/js/2.bcfd4786.chunk.js"
   },
   {
-    "revision": "8bf394f0619d9ea0b6ae",
-    "url": "/react-bitCoin/static/css/main.0bb16ef6.chunk.css"
+    "revision": "6c38fdd298d4d1900181",
+    "url": "/react-bitCoin/static/css/main.00ee611a.chunk.css"
   },
   {
-    "revision": "b547bca762e802db779c7d37ef152928",
+    "revision": "f6c950552b96e45ab962a4afb303891f",
     "url": "/react-bitCoin/index.html"
   }
 ];
