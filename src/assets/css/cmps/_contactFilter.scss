@@ -5,10 +5,11 @@
 /********** Filter **********/
 
 .filter-container {
-  margin: 6px 0px 6px 0px;
+  margin: 10px 0;
   input {
+    min-width: 50%;
     font-size: 1.1rem;
-    padding: 2px 4px;
+    padding: 6px 8px;
     border: 0.5px solid rgb(68, 68, 68);
     background-color: $clr5;
     &:focus {

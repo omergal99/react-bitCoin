@@ -40,7 +40,7 @@ class HomePage extends Component {
     var currUser = this.props.store.userStore.getCurrUser;
     return (
       <section className="home">
-        <div>Hello {currUser.name}!</div>
+        <p>Hello {currUser.name}!</p>
 
         <div className="header flex wrap space-center">
           <div className="balance">
@@ -56,7 +56,6 @@ class HomePage extends Component {
             <div className="order">Coins: ₿1</div>
             <div className="order">USD: $354.23</div>
           </div>
-
         </div>
 
         <MovesList moves={this.state.threeMoves}
