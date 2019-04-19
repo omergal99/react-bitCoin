@@ -26,10 +26,10 @@ export default class TransferFund extends Component {
   }
   render() {
     return (
-      <section>
+      <section className="move-money">
         <p>Give Some Coins to {this.props.contact && this.props.contact.name}</p>
-        Amount &nbsp;
-        <form>
+        {/* Amount &nbsp; */}
+        <form >
           <input value={this.state.moneyToSend} onChange={this.setCoins} type="number" />
           <button onClick={this.sendMoney}>Send</button>
           <div>{this.state.wrongMsg}</div>

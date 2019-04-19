@@ -63,7 +63,7 @@ class ContactDetailsPage extends Component {
 
         <div className="user-details flex wrap ">
           <div className="user-img">
-            <img height="150" src={urlImg} alt="" />
+            <img src={urlImg} alt="" />
           </div>
 
           {this.state.contact &&
