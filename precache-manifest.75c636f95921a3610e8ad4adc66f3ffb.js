@@ -12,19 +12,19 @@ self.__precacheManifest = [
     "url": "/react-bitCoin/static/js/runtime~main.5a36ab58.js"
   },
   {
-    "revision": "01d47da36fcfacffa251",
-    "url": "/react-bitCoin/static/js/main.f4d12801.chunk.js"
+    "revision": "202bfb9b59ad32e4f642",
+    "url": "/react-bitCoin/static/js/main.ee972701.chunk.js"
   },
   {
     "revision": "aa9ca82f17e55a3469b1",
     "url": "/react-bitCoin/static/js/2.bcfd4786.chunk.js"
   },
   {
-    "revision": "01d47da36fcfacffa251",
-    "url": "/react-bitCoin/static/css/main.2a311866.chunk.css"
+    "revision": "202bfb9b59ad32e4f642",
+    "url": "/react-bitCoin/static/css/main.8bbb2e94.chunk.css"
   },
   {
-    "revision": "54a76475fbca0d3ba022fb9e430b39eb",
+    "revision": "3566b32701ff24fea0512057cee9e368",
     "url": "/react-bitCoin/index.html"
   }
 ];
